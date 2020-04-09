@@ -1,0 +1,4 @@
+requests>=2.23.0
+pytest>=5.4.1
+pytest-flake8>=1.0.4
+pytest_cov>=2.8.1
