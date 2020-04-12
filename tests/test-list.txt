@@ -1,0 +1,10 @@
+# this is a test
+0.0.0.0 1.example.com
+127.0.0.1 2.example.com
+# 0.0.0.0 3.example.com
+0.0.0.0 4.example.com # another comment
+5.example.com
+6.example.com   #   another one
+0.0.0.0 7.example.com
+8=invalid.com
+0.0.0.0 9+invalid.com

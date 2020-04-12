@@ -4,6 +4,7 @@ import re
 
 class TestHostsTools(object):
 
+    TEST_FILE_NAME = './tests/test-list.txt'
     TEST_DOMAINS = {'a.com', 'b.a.com', 'b.com', 'a.b.com'}
     TEST_WHITELIST = {
         re.compile('^b\\.b\\.com$', re.IGNORECASE),
@@ -80,6 +81,14 @@ class TestHostsTools(object):
         extracted = HostsTools.extract_domain("0.0.0.0 example.com")
         assert extracted == "example.com"
 
+    def test_extract_different_ip(self):
+        extracted = HostsTools.extract_domain("127.0.0.1 example.com")
+        assert extracted == "example.com"
+
+    def test_extract_no_ip(self):
+        extracted = HostsTools.extract_domain("example.com")
+        assert extracted == "example.com"
+
     def test_extract_trailing_comment(self):
         extracted = HostsTools.extract_domain("0.0.0.0 example.com # comment")
         assert extracted == "example.com"
@@ -111,6 +120,10 @@ class TestHostsTools(object):
         assert reduced
         assert not {'a.com', 'b.com'}.difference(reduced)
 
+    def test_reduce_domains_empty(self):
+        reduced = HostsTools.reduce_domains(set())
+        assert not set().difference(reduced)
+
     def test_domain_is_whitelisted(self):
         domains = {
             'b.com',
@@ -128,3 +141,20 @@ class TestHostsTools(object):
         }
         filtered = HostsTools.filter_whitelist(domains, set())
         assert filtered == {'example.com', 'ad.example.com'}
+
+    def test_read_domains_list(self):
+        domains = HostsTools.load_domains_from_list(self.TEST_FILE_NAME)
+        assert domains
+        assert len(domains) == 6
+
+    def test_normalize_domain_simple(self):
+        normalized = HostsTools.normalize_domain('   eXaMple.com   ')
+        assert normalized == 'example.com'
+
+    def test_normalize_domain_none(self):
+        normalized = HostsTools.normalize_domain(None)
+        assert normalized == normalized
+
+    def test_normalize_domain_tab(self):
+        normalized = HostsTools.normalize_domain(" \t example.com \t\t ")
+        assert normalized == 'example.com'
