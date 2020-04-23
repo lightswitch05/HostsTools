@@ -1,5 +1,5 @@
 from . import Client
-from . import HostsTools
+from . import HostTools
 from typing import Set
 
 
@@ -14,6 +14,6 @@ def find_subdomains(domain: str, verbose: bool = False) -> Set[str]:
                 print('Found: %s' % found_domain)
             if found_domain.startswith('*.'):
                 found_domain = found_domain[2:]
-            if HostsTools.is_valid_domain(found_domain):
+            if HostTools.is_valid_domain(found_domain):
                 found_domains.add(found_domain)
     return found_domains

@@ -1,4 +1,4 @@
-from HostTools import HostsTools
+from hosts_tools import HostsTools
 import re
 
 
