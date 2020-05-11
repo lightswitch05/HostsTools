@@ -15,6 +15,7 @@ class VtClient:
 
     def __init__(self, api_key):
         self.api_key = api_key
+        self.last_request_epoch = None
 
     def find_domains(self, domain: str, verbose: bool = False) -> VtResponse:
         results = VtResponse({domain}, {})
