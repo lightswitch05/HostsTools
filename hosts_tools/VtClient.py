@@ -18,7 +18,7 @@ class VtClient:
         self.last_request_epoch = -1
 
     def find_domains(self, domain: str, verbose: bool = False) -> VtResponse:
-        results = VtResponse({domain}, {})
+        results = VtResponse(set(domain), set())
         if not self.api_key or self.api_key == 'SET_ME':
             print('Missing VirusTotal API key, skipping lookup!')
             return results
