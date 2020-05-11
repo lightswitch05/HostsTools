@@ -51,10 +51,8 @@ class VtClient:
         now = int(time.time())
         if self.last_request_epoch < 0:
             self.last_request_epoch = now
-            print('no previous sleep time known')
             return
         time_left = 16 - (now - self.last_request_epoch)
         if time_left > 0:
-            print('sleep for %s' % time_left)
             time.sleep(time_left)
-        print('no need to sleep: %s' % time_left)
+        self.last_request_epoch = int(time.time())
