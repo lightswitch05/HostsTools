@@ -15,7 +15,7 @@ class VtClient:
 
     def __init__(self, api_key):
         self.api_key = api_key
-        self.last_request_epoch = None
+        self.last_request_epoch = -1
 
     def find_domains(self, domain: str, verbose: bool = False) -> VtResponse:
         results = VtResponse({domain}, {})
@@ -49,7 +49,7 @@ class VtClient:
     def _sleep(self) -> None:
         # free API is capped at 4 requests per minute
         now = int(time.time())
-        if not self.last_request_epoch:
+        if self.last_request_epoch < 0:
             self.last_request_epoch = now
             return
         time_left = 16 - (now - self.last_request_epoch)
