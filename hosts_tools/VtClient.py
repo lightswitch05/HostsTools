@@ -30,11 +30,11 @@ class VtClient:
             'domain': domain
         })
         if 'subdomains' in response and response['subdomains']:
-            domains = self._parse_domains(response['subdomains'], verbose)
-            results.subdomains.update(domains)
+            subdomains = self._parse_domains(response['subdomains'], verbose)
+            results.subdomains.update(subdomains)
         if 'domain_siblings' in response and response['domain_siblings']:
-            domains = self._parse_domains(response['domain_siblings'], verbose)
-            results.subdomains.update(domains)
+            siblings = self._parse_domains(response['domain_siblings'], verbose)
+            results.siblings.update(siblings)
         return results
 
     def _parse_domains(self, domains, verbose: bool) -> Set[str]:
