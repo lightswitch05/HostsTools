@@ -2,7 +2,7 @@ import re
 from typing import List, Set, Pattern
 
 STRIP_COMMENTS_PATTERN = re.compile(r"^([^#]+)")
-ALLOWED_DOMAIN_PATTERN = re.compile(r"^[^\*\?\[\]{}\|\\/&^%$\(\)#@!+=~`\s\.<>,\"']+$", re.IGNORECASE)
+ALLOWED_DOMAIN_PATTERN = re.compile(r"^[^\*\?\[\]{}\|\\/&^%$\(\)#@!:;+=~`\s\.<>,\"']+$", re.IGNORECASE)
 EXCLUDE_DOMAIN_PATTERN = re.compile(r"^[-]", re.IGNORECASE)
 
 

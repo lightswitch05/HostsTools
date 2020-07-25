@@ -43,6 +43,14 @@ class TestHostsTools(object):
         is_valid = HostsTools.is_valid_domain(")example.com")
         assert not is_valid
 
+    def test_colon_is_not_a_valid_domain(self):
+        is_valid = HostsTools.is_valid_domain("v:443.example.com")
+        assert not is_valid
+
+    def test_simi_colon_is_not_a_valid_domain(self):
+        is_valid = HostsTools.is_valid_domain("v;443.example.com")
+        assert not is_valid
+
     def test_unicode_is_a_valid_domain(self):
         is_valid = HostsTools.is_valid_domain(u"www.с\ud0b0.com")
         assert is_valid
