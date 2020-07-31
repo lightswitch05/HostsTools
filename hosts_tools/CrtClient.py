@@ -3,9 +3,11 @@ from . import HostTools
 from typing import Set
 
 
-def find_subdomains(domain: str, verbose: bool = False) -> Set[str]:
+def find_subdomains(domain: str, expired: bool, verbose: bool = False) -> Set[str]:
     found_domains = {domain}  # include query as a found domain
     url = 'https://crt.sh/?q=%.{d}&output=json'.format(d=domain)
+    if not expired:
+        url += '&exclude=expired'
     response = Client.safe_api_call(url)
     for key, value in enumerate(response):
         if 'name_value' in value:
