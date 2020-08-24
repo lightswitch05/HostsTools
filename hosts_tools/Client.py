@@ -5,7 +5,7 @@ def safe_api_call(url: str, params: dict = {}) -> dict:
     try:
         req = requests.get(url, params=params, timeout=(30, 120), headers={
             'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:75.0) Gecko/20100101 Firefox/75.0'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0) Gecko/20100101 Firefox/78.0'
         })
         if req.status_code != 200:
             print('Error received from %s: %s' % (url, req.text))

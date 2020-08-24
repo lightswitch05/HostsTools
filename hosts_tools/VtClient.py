@@ -53,7 +53,7 @@ class VtClient:
         if self.last_request_epoch < 0:
             self.last_request_epoch = now
             return
-        time_left = 16 - (now - self.last_request_epoch)
+        time_left = 14.1 - (now - self.last_request_epoch)
         if time_left > 0:
             time.sleep(time_left)
         self.last_request_epoch = int(time.time())
