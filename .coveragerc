@@ -7,10 +7,3 @@ source = .
 [report]
 show_missing = true
 precision = 2
-omit = tests/*
-
-[html]
-directory = cov-html
-
-[xml]
-output = coverage.xml
